@@ -103,7 +103,7 @@ fun ScreenBackground(content: @Composable () -> Unit) {
 }
 
 
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
+@Preview("Light Theme")
 @Composable
 fun LightPreviewWelcome() {
     MyTheme {
@@ -111,7 +111,7 @@ fun LightPreviewWelcome() {
     }
 }
 
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Preview("Dark Theme")
 @Composable
 fun DarkPreviewWelcome() {
     MyTheme(darkTheme = true) {

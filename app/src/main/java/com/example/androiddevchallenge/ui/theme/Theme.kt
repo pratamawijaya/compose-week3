@@ -39,11 +39,11 @@ private val DarkColorPalette = darkColors(
     primaryVariant = Color.Unspecified,
     secondary = green300,
     background = gray,
-    surface = white850,
+    surface = lightGray,
     onPrimary = white,
     onSecondary = gray,
     onBackground = white,
-    onSurface = white850
+    onSurface = white85
 )
 
 @Composable
@@ -60,4 +60,30 @@ fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() (
         shapes = shapes,
         content = content
     )
+}
+
+@Composable
+fun MySecondaryTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
+) {
+    val colors = if (darkTheme) {
+        DarkColorPalette.copy(
+            primary = green300,
+            onPrimary = gray
+        )
+    } else {
+        LightColorPalette.copy(
+            primary = pink900,
+            onPrimary = white
+        )
+    }
+
+    MaterialTheme(
+        colors = colors,
+        typography = typography,
+        shapes = roundShapeButton,
+        content = content
+    )
+
 }

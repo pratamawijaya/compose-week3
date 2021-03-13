@@ -17,6 +17,9 @@ package com.example.androiddevchallenge.ui.screens.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.material.Button
@@ -33,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.ui.theme.MySecondaryTheme
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
@@ -56,21 +60,33 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
                 style = MaterialTheme.typography.subtitle1
             )
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = Modifier.padding(top = 40.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
-            ) {
-                Text(text = "Create Account")
+            Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+                MySecondaryTheme {
+                    Button(
+                        onClick = { /*TODO*/ },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp)
+                            .padding(bottom = 8.dp)
+                    ) {
+                        Text(text = "Create Account")
+                    }
+                }
+
+                Text(text = "Login")
             }
-            Text(text = "Login")
+
+
         }
     }
 }
 
 @Composable
 fun ScreenBackground(content: @Composable () -> Unit) {
-    Surface {
+    Surface(
+        modifier = Modifier.fillMaxHeight(),
+        color = MaterialTheme.colors.primary
+    ) {
         Image(
             painter = painterResource(id = R.drawable.ic_light_welcome_bg),
             contentDescription = "",

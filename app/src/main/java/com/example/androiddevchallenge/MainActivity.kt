@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         // This app draws behind the system bars, so we want to handle fitting system windows
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             MyTheme {
-                NavGraph()
+                ProvideWindowInsets {
+                    NavGraph()
+                }
             }
         }
     }

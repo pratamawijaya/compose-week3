@@ -1,2 +1,2 @@
-rootProject.name = "AndroidDevChallenge"
+rootProject.name = "Compose Challenge Week 3"
 include ':app'

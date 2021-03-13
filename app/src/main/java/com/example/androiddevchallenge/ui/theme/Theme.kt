@@ -46,7 +46,6 @@ private val DarkColorPalette = darkColors(
     onSurface = white85
 )
 
-
 @Composable
 fun MyTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
     val colors = if (darkTheme) {

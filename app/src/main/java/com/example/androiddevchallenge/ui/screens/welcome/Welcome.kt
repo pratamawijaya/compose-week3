@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonColors
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -54,7 +56,11 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
                 style = MaterialTheme.typography.subtitle1
             )
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 40.dp)) {
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier.padding(top = 40.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
+            ) {
                 Text(text = "Create Account")
             }
             Text(text = "Login")

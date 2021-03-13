@@ -39,11 +39,11 @@ private val DarkColorPalette = darkColors(
     primaryVariant = Color.Unspecified,
     secondary = green300,
     background = gray,
-    surface = lightGray,
+    surface = white850,
     onPrimary = white,
     onSecondary = gray,
     onBackground = white,
-    onSurface = white85
+    onSurface = white850
 )
 
 @Composable

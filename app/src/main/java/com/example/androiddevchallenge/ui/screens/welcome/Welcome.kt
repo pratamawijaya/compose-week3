@@ -16,6 +16,7 @@
 package com.example.androiddevchallenge.ui.screens.welcome
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,12 +34,18 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.MyApp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MySecondaryTheme
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
 fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val icLogo = if (isDarkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo
+    val icWelcome =
+        if (isDarkTheme) R.drawable.ic_dark_welcome_illos else R.drawable.ic_light_welcome_illos
+
     ScreenBackground {
         Column(
             modifier = Modifier
@@ -47,12 +54,12 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
         ) {
             Image(
                 modifier = Modifier.padding(start = 88.dp, bottom = 48.dp),
-                painter = painterResource(id = R.drawable.ic_light_welcome_illos),
+                painter = painterResource(id = icWelcome),
                 contentDescription = "leaf",
                 contentScale = ContentScale.Crop
             )
 
-            Image(painter = painterResource(id = R.drawable.ic_light_logo), contentDescription = "")
+            Image(painter = painterResource(id = icLogo), contentDescription = "")
             Text(
                 text = "Beautiful home garden solutions",
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
@@ -79,12 +86,15 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
 
 @Composable
 fun ScreenBackground(content: @Composable () -> Unit) {
+    val isDarkTheme = isSystemInDarkTheme()
+    val icWelcomeBg =
+        if (isDarkTheme) R.drawable.ic_dark_welcome_bg else R.drawable.ic_light_welcome_bg
     Surface(
         modifier = Modifier.fillMaxHeight(),
         color = MaterialTheme.colors.primary
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_light_welcome_bg),
+            painter = painterResource(id = icWelcomeBg),
             contentDescription = "",
             contentScale = ContentScale.Crop
         )
@@ -92,10 +102,21 @@ fun ScreenBackground(content: @Composable () -> Unit) {
     }
 }
 
-@Preview
+
+@Preview("Light Theme", widthDp = 360, heightDp = 640)
 @Composable
-fun PreviewWelcomeScreen() {
+fun LightPreviewWelcome() {
     MyTheme {
         WelcomeScreen(welcomeScreenComplete = { })
     }
 }
+
+@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+@Composable
+fun DarkPreviewWelcome() {
+    MyTheme(darkTheme = true) {
+        WelcomeScreen(welcomeScreenComplete = { })
+    }
+}
+
+

@@ -18,7 +18,6 @@ package com.example.androiddevchallenge.ui.screens.login
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -51,7 +50,6 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
     var emailAddress by mutableStateOf("")
     var password by mutableStateOf("")
 
-
     Surface(modifier = Modifier.fillMaxHeight()) {
         Column(
             modifier = Modifier.padding(horizontal = 16.dp),
@@ -68,7 +66,8 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
                 onValueChange = { emailAddress = it },
                 placeholder = {
                     Text(text = "Email Address", style = MaterialTheme.typography.body1)
-                })
+                }
+            )
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
@@ -76,7 +75,8 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
                 onValueChange = { password = it },
                 placeholder = {
                     Text(text = "Password (8+ characters)", style = MaterialTheme.typography.body1)
-                })
+                }
+            )
             Text(
                 buildAnnotatedString {
                     append("By clicking below, you agree to our ")

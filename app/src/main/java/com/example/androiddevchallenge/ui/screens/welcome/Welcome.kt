@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
@@ -64,7 +65,7 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
 
             Image(painter = painterResource(id = icLogo), contentDescription = "")
             Text(
-                text = "Beautiful home garden solutions",
+                text = stringResource(R.string.welcome_subtitle),
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
                 style = MaterialTheme.typography.subtitle1
             )
@@ -81,7 +82,7 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
                             .fillMaxWidth()
                             .height(48.dp)
                     ) {
-                        Text(text = "Create Account")
+                        Text(text = stringResource(R.string.create_account))
                     }
                 }
                 TextButton(
@@ -91,7 +92,7 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
                         .padding(top = 48.dp)
                 ) {
                     val textColor = if (MaterialTheme.colors.isLight) pink900 else white
-                    Text(text = "Log in", color = textColor)
+                    Text(text = stringResource(R.string.log_in), color = textColor)
                 }
             }
         }

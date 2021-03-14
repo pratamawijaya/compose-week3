@@ -18,9 +18,9 @@ package com.example.androiddevchallenge.ui.theme
 import androidx.compose.ui.graphics.Color
 
 // light pallet
-val pink100 = Color(0xFFF1F1)
-val pink900 = Color(0x3F2C2C)
-val white = Color(0xFFFFFF)
+val pink100 = Color(0xFFFFF1F1)
+val pink900 = Color(0xFF3F2C2C)
+val white = Color(0xFFFFFFFF)
 val white85 = Color(0xD9FFFFFF)
 val gray = Color(0xFF232323)
 val lightGray = Color(0xFF313131)

@@ -43,6 +43,7 @@ import com.example.androiddevchallenge.ui.theme.MyTheme
 fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
     val isDarkTheme = isSystemInDarkTheme()
     val icLogo = if (isDarkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo
+
     val icWelcome =
         if (isDarkTheme) R.drawable.ic_dark_welcome_illos else R.drawable.ic_light_welcome_illos
 
@@ -65,20 +66,24 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
                 style = MaterialTheme.typography.subtitle1
             )
-            Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+            Column(
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 MySecondaryTheme {
                     Button(
                         onClick = { /*TODO*/ },
                         modifier = Modifier
+                            .padding(top = 40.dp)
+                            .paddingFromBaseline(bottom = 8.dp)
                             .fillMaxWidth()
                             .height(48.dp)
-                            .padding(bottom = 8.dp)
                     ) {
                         Text(text = "Create Account")
                     }
                 }
 
-                Text(text = "Login")
+                Text(text = "Log in", modifier = Modifier.padding(top = 48.dp))
             }
         }
     }

@@ -95,7 +95,7 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
             )
             MySecondaryTheme {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = loginSuccessListener,
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .paddingFromBaseline(bottom = 8.dp)

@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
@@ -36,14 +37,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
-import com.example.androiddevchallenge.ui.theme.MySecondaryTheme
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.theme.ReverseTheme
 
 @Composable
 fun LoginScreen(loginSuccessListener: () -> Unit) {
@@ -55,45 +58,58 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
             modifier = Modifier.padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Log in with email",
-                modifier = Modifier.paddingFromBaseline(top = 184.dp),
-                style = MaterialTheme.typography.h1
-            )
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = emailAddress,
-                onValueChange = { emailAddress = it },
-                placeholder = {
-                    Text(text = "Email Address", style = MaterialTheme.typography.body1)
-                }
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = password,
-                onValueChange = { password = it },
-                placeholder = {
-                    Text(text = "Password (8+ characters)", style = MaterialTheme.typography.body1)
-                }
-            )
-            Text(
-                buildAnnotatedString {
-                    append("By clicking below, you agree to our ")
-                    withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
-                        append("Terms of Use")
-                    }
-                    append(" and consent to our ")
-                    withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
-                        append("Privacy Policy")
-                    }
-                    append(".")
-                },
-                modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 16.dp),
-                style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center
-            )
-            MySecondaryTheme {
+            ReverseTheme {
+                Text(
+                    text = "Log in with email",
+                    modifier = Modifier.paddingFromBaseline(top = 184.dp),
+                    style = MaterialTheme.typography.h1
+                )
+                OutlinedTextField(
+                    value = emailAddress,
+                    modifier = Modifier.fillMaxWidth(),
+
+                    onValueChange = { emailAddress = it },
+                    placeholder = {
+                        Text(text = "Email Address", style = MaterialTheme.typography.body1)
+                    },
+                    label = { Text(text = "Email") },
+                    singleLine = true
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                OutlinedTextField(
+                    value = password,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    label = { Text(text = "Password") },
+                    placeholder = {
+                        Text(
+                            text = "12334444",
+                            style = MaterialTheme.typography.body1
+                        )
+                    },
+                    visualTransformation = PasswordVisualTransformation(),
+                    onValueChange = {
+                        password = it
+                    },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+                )
+
+                Text(
+                    buildAnnotatedString {
+                        append("By clicking below, you agree to our ")
+                        withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
+                            append("Terms of Use")
+                        }
+                        append(" and consent to our ")
+                        withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
+                            append("Privacy Policy")
+                        }
+                        append(".")
+                    },
+                    modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 16.dp),
+                    style = MaterialTheme.typography.body2,
+                    textAlign = TextAlign.Center
+                )
                 Button(
                     onClick = loginSuccessListener,
                     modifier = Modifier

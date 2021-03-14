@@ -58,7 +58,7 @@ fun NavGraph(startDestination: String = MainDestinations.WELCOME) {
 
 class MainActions(navController: NavController) {
 
-    val actionStartToLogin: (Int) -> Unit = {
+    val actionStartToLogin: () -> Unit = {
         navController.navigate(MainDestinations.LOGIN)
     }
 

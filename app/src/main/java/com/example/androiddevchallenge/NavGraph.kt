@@ -41,14 +41,12 @@ fun NavGraph(startDestination: String = MainDestinations.WELCOME) {
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(MainDestinations.WELCOME) {
-            WelcomeScreen(
-                welcomeScreenComplete = actions.actionStartToLogin
-            )
+            WelcomeScreen(onWelcomeCompleteListener = actions.actionStartToLogin)
         }
 
         composable(MainDestinations.LOGIN) {
             LoginScreen(
-                loginSuccess = actions.actionLoginToHome
+                loginSuccessListener = actions.actionLoginToHome
             )
         }
 
@@ -60,7 +58,7 @@ fun NavGraph(startDestination: String = MainDestinations.WELCOME) {
 
 class MainActions(navController: NavController) {
 
-    val actionStartToLogin: () -> Unit = {
+    val actionStartToLogin: (Int) -> Unit = {
         navController.navigate(MainDestinations.LOGIN)
     }
 

@@ -17,12 +17,14 @@ package com.example.androiddevchallenge.ui.screens.welcome
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -32,15 +34,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.MyApp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MySecondaryTheme
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
+fun WelcomeScreen(onWelcomeCompleteListener: (Int) -> Unit) {
     val isDarkTheme = isSystemInDarkTheme()
     val icLogo = if (isDarkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo
 
@@ -82,8 +84,11 @@ fun WelcomeScreen(welcomeScreenComplete: () -> Unit) {
                         Text(text = "Create Account")
                     }
                 }
-
-                Text(text = "Log in", modifier = Modifier.padding(top = 48.dp))
+                ClickableText(
+                    text = AnnotatedString("Log In"),
+                    onClick = onWelcomeCompleteListener,
+                    modifier = Modifier.padding(top = 48.dp)
+                )
             }
         }
     }
@@ -112,7 +117,7 @@ fun ScreenBackground(content: @Composable () -> Unit) {
 @Composable
 fun LightPreviewWelcome() {
     MyTheme {
-        WelcomeScreen(welcomeScreenComplete = { })
+        WelcomeScreen(onWelcomeCompleteListener = {})
     }
 }
 
@@ -120,7 +125,7 @@ fun LightPreviewWelcome() {
 @Composable
 fun DarkPreviewWelcome() {
     MyTheme(darkTheme = true) {
-        WelcomeScreen(welcomeScreenComplete = { })
+        WelcomeScreen(onWelcomeCompleteListener = { })
     }
 }
 

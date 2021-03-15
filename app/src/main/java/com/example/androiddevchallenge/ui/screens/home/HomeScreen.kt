@@ -15,22 +15,35 @@
  */
 package com.example.androiddevchallenge.ui.screens.home
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.datasource.ThemeDataSource
+import com.example.androiddevchallenge.ui.datasource.model.Theme
+import com.example.androiddevchallenge.ui.screens.home.components.BloomCard
+import com.example.androiddevchallenge.ui.screens.home.components.SearchField
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun HomeScreen() {
@@ -41,27 +54,58 @@ fun HomeScreen() {
         backgroundColor = MaterialTheme.colors.background
     ) {
         Column {
-            OutlinedTextField(
+            SearchField()
+
+            Text(
+                text = "Browse themes",
+                modifier = Modifier
+                    .paddingFromBaseline(top = 32.dp)
+                    .padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.h1,
+                color = MaterialTheme.colors.onBackground
+            )
+
+            LazyRow(
+                modifier = Modifier.padding(top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(ThemeDataSource.themes) { theme ->
+                    CardItem(theme = theme)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun CardItem(
+    modifier: Modifier = Modifier,
+    theme: Theme
+) {
+    BloomCard(
+        modifier = modifier
+            .size(136.dp)
+            .clickable { }
+    ) {
+        Column(Modifier.fillMaxSize()) {
+            CoilImage(
+                data = theme.image,
+                contentScale = ContentScale.Crop,
+                contentDescription = "Theme: ${theme.name}",
+                fadeIn = true,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .defaultMinSize(minHeight = 56.dp),
-                value = "",
-                onValueChange = { },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Filled.Search,
-                        contentDescription = "Search",
-                        modifier = Modifier.size(18.dp)
-                    )
-                },
-                placeholder = {
-                    Text(
-                        text = "Search",
-                        style = MaterialTheme.typography.body1,
-                        color = MaterialTheme.colors.onBackground
-                    )
-                }
+                    .height(96.dp)
             )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = theme.name,
+                style = MaterialTheme.typography.h2,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

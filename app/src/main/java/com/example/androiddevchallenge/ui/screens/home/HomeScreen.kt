@@ -19,6 +19,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,11 +28,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -39,9 +44,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.example.androiddevchallenge.ui.datasource.PlantDataSource
 import com.example.androiddevchallenge.ui.datasource.ThemeDataSource
 import com.example.androiddevchallenge.ui.datasource.model.Theme
 import com.example.androiddevchallenge.ui.screens.home.components.BloomCard
+import com.example.androiddevchallenge.ui.screens.home.components.PlantItem
 import com.example.androiddevchallenge.ui.screens.home.components.SearchField
 import dev.chrisbanes.accompanist.coil.CoilImage
 
@@ -53,28 +60,70 @@ fun HomeScreen() {
             .fillMaxHeight(),
         backgroundColor = MaterialTheme.colors.background
     ) {
-        Column {
-            SearchField()
+        LazyColumn {
+            item {
+                SearchField()
+            }
 
-            Text(
-                text = "Browse themes",
-                modifier = Modifier
-                    .paddingFromBaseline(top = 32.dp)
-                    .padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.h1,
-                color = MaterialTheme.colors.onBackground
-            )
+            item {
+                // browse theme
+                Text(
+                    text = "Browse themes",
+                    modifier = Modifier
+                        .paddingFromBaseline(top = 32.dp)
+                        .padding(horizontal = 16.dp),
+                    style = MaterialTheme.typography.h1,
+                    color = MaterialTheme.colors.onBackground
+                )
+            }
 
-            LazyRow(
-                modifier = Modifier.padding(top = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(ThemeDataSource.themes) { theme ->
-                    CardItem(theme = theme)
+            item {
+
+                // horizontal list
+                LazyRow(
+                    modifier = Modifier.padding(top = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    contentPadding = PaddingValues(start = 16.dp, end = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(ThemeDataSource.themes) { theme ->
+                        CardItem(theme = theme)
+                    }
+                }
+
+            }
+
+            item {
+                // header
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .paddingFromBaseline(top = 40.dp)
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Design your home garden",
+                        style = MaterialTheme.typography.h1,
+                        color = MaterialTheme.colors.onBackground
+                    )
+                    Icon(
+                        imageVector = Icons.Filled.FilterList,
+                        contentDescription = "filter icon"
+                    )
                 }
             }
+
+            items(PlantDataSource.plants) { plant ->
+                PlantItem(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    plant = plant
+                )
+            }
+
         }
     }
 }

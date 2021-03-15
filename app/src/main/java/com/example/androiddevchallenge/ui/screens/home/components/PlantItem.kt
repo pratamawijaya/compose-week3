@@ -22,21 +22,18 @@ fun PlantItem(
     modifier: Modifier = Modifier,
     plant: Plant
 ) {
-
     ConstraintLayout(
         constraintSet = constraints(),
         modifier = modifier.height(64.dp)
     ) {
-
         CoilImage(
             data = plant.image,
-            contentDescription = "Plant: ${plant.name}",
+            contentDescription = "${plant.name}",
             contentScale = ContentScale.Crop,
             fadeIn = true,
             modifier = Modifier
                 .layoutId("image")
                 .size(64.dp)
-                .clip(MaterialTheme.shapes.small)
         )
 
         Text(
@@ -53,7 +50,7 @@ fun PlantItem(
             style = MaterialTheme.typography.body1,
             color = MaterialTheme.colors.onBackground,
             modifier = Modifier
-                .layoutId("description")
+                .layoutId("desc")
                 .paddingFromBaseline(bottom = 24.dp)
         )
     }
@@ -74,8 +71,6 @@ private fun constraints(): ConstraintSet {
 
         constrain(title) {
             linkTo(start = image.end, end = parent.end, startMargin = 8.dp)
-            bottom.linkTo(description.top)
-
             width = Dimension.fillToConstraints
         }
 
@@ -85,7 +80,6 @@ private fun constraints(): ConstraintSet {
             bottom.linkTo(parent.bottom)
 
             width = Dimension.fillToConstraints
-
         }
 
 

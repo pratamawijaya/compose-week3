@@ -116,12 +116,14 @@ fun HomeScreen() {
             }
 
             items(PlantDataSource.plants) { plant ->
+                Spacer(modifier = Modifier.height(8.dp))
                 PlantItem(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     plant = plant
                 )
+                Spacer(modifier = Modifier.height(8.dp))
             }
 
         }

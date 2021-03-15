@@ -90,7 +90,6 @@ fun HomeScreen() {
                         CardItem(theme = theme)
                     }
                 }
-
             }
 
             item {
@@ -125,7 +124,6 @@ fun HomeScreen() {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
-
         }
     }
 }

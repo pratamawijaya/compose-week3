@@ -16,7 +16,6 @@
 package com.example.androiddevchallenge.ui.screens.welcome
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -44,12 +43,6 @@ import com.example.androiddevchallenge.ui.theme.white
 
 @Composable
 fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
-    val isDarkTheme = isSystemInDarkTheme()
-    val icLogo = if (isDarkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo
-
-    val icWelcome =
-        if (isDarkTheme) R.drawable.ic_dark_welcome_illos else R.drawable.ic_light_welcome_illos
-
     ScreenBackground {
         Column(
             modifier = Modifier
@@ -58,12 +51,12 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
         ) {
             Image(
                 modifier = Modifier.padding(start = 88.dp, bottom = 48.dp),
-                painter = painterResource(id = icWelcome),
+                painter = painterResource(id = R.drawable.ic_welcome_illos),
                 contentDescription = "leaf",
                 contentScale = ContentScale.Crop
             )
 
-            Image(painter = painterResource(id = icLogo), contentDescription = "")
+            Image(painter = painterResource(id = R.drawable.ic_logo), contentDescription = "")
             Text(
                 text = stringResource(R.string.welcome_subtitle),
                 modifier = Modifier.paddingFromBaseline(top = 32.dp),
@@ -101,15 +94,12 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
 
 @Composable
 fun ScreenBackground(content: @Composable () -> Unit) {
-    val isDarkTheme = isSystemInDarkTheme()
-    val icWelcomeBg =
-        if (isDarkTheme) R.drawable.ic_dark_welcome_bg else R.drawable.ic_light_welcome_bg
     Surface(
         modifier = Modifier.fillMaxHeight(),
         color = MaterialTheme.colors.primary
     ) {
         Image(
-            painter = painterResource(id = icWelcomeBg),
+            painter = painterResource(id = R.drawable.ic_welcome_bg),
             contentDescription = "",
             contentScale = ContentScale.Crop
         )

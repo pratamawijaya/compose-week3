@@ -31,12 +31,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.ui.theme.ReverseTheme
+import com.example.androiddevchallenge.ui.theme.MyThemeSecondary
 
 @Composable
 fun SearchField() {
     var searchQuery by mutableStateOf("")
-    ReverseTheme {
+    MyThemeSecondary {
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()

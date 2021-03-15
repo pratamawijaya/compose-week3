@@ -46,7 +46,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.ui.theme.ReverseTheme
+import com.example.androiddevchallenge.ui.theme.MyThemeSecondary
 
 @Composable
 fun LoginScreen(loginSuccessListener: () -> Unit) {
@@ -58,7 +58,7 @@ fun LoginScreen(loginSuccessListener: () -> Unit) {
             modifier = Modifier.padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ReverseTheme {
+            MyThemeSecondary {
                 Text(
                     text = "Log in with email",
                     modifier = Modifier.paddingFromBaseline(top = 184.dp),

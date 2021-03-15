@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.ui.theme.ReverseTheme
+import com.example.androiddevchallenge.ui.theme.MyThemeSecondary
 import com.example.androiddevchallenge.ui.theme.pink900
 import com.example.androiddevchallenge.ui.theme.white
 
@@ -66,7 +66,7 @@ fun WelcomeScreen(onWelcomeCompleteListener: () -> Unit) {
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ReverseTheme {
+                MyThemeSecondary {
                     Button(
                         onClick = { /*TODO*/ },
                         modifier = Modifier

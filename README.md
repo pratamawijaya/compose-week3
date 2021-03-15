@@ -18,7 +18,7 @@
 <!-- You can add more screenshots here if you like -->
 <img src="/results/1_welcome_dark.png" width="260">&emsp;<img src="/results/1_welcome_light.png" width="260">
 
-<img src="/results/2_login_dark.png.png" width="260">&emsp;<img src="/results/2_login_light.png" width="260">
+<img src="/results/2_login_dark.png" width="260">&emsp;<img src="/results/2_login_light.png" width="260">
 
 ## License
 ```
